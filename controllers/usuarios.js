@@ -10,7 +10,7 @@ const Usuario = require('../models/usuario');
 const ususariosGet = async(req=request, res = response) => {
 
     //TODO recibir numeros no letras
-    const{limite=5,desde=0} = req.query; 
+    const{limite=1,desde=0} = req.query; 
     const query={estado:true};
     
     const [total,usuarios] = await Promise.all([
@@ -67,11 +67,13 @@ const usuariosPost = async (req, res = response) => {
 ///////////////////////////////////////////////////////////
 const usuariosDelete = async (req, res=response) => {
     const {id}= req.params;
-
+    //Se obtiene el usuario autenticado y el borrado
     const usuario = await Usuario.findByIdAndUpdate(id,{estado:false});
+    const usuarioAutenticado = req.usuario;
 
     res.json({
-        id
+        usuario,
+        usuarioAutenticado
     });
 }
 ///////////////////////////////////////////////////////////
