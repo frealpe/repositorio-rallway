@@ -2,14 +2,16 @@ const path = require('path');
 const {v4:uuidv4}=require('uuid');
 
 
-const subirArchivo = (files,exytensionesValidas=['pdf','docx','jpeg'],carpeta='')=>{
+const subirArchivo = (files,exytensionesValidas=['pdf','docx','jpeg','png'],carpeta='')=>{
 
-    return new Promise((resolve,reject)=>{
+//    console.log(files);
 
-        const {archivo} = files;  //Se desestructira la palabra archivo que viene de la req
+    return new Promise((resolve,reject)=>{  
 
+        const {archivo,body} = files;  //Se desestructura la palabra archivo que viene de la req
+        //console.log(archivo);
+  //      console.log(body);
         const nombreCortado = archivo.name.split('.');
-
         const extension = nombreCortado[nombreCortado.length-1];
         //Validar una extensión
     
@@ -25,7 +27,7 @@ const subirArchivo = (files,exytensionesValidas=['pdf','docx','jpeg'],carpeta=''
     
       
         archivo.mv(uploadPath, (err) =>{
-          if (err) {
+          if (err) { 
            reject(err);
           }
       

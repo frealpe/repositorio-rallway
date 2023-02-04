@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const LaboratoriosSchema = Schema({
+const GuiaSchema = Schema({
 
     nombre: {
         type: String,
@@ -8,16 +8,21 @@ const LaboratoriosSchema = Schema({
         unique: true
     },
     
-    sala: {
+    laboratorio: {
         type: Schema.Types.ObjectId,    //Lo usamos para relacionar el laboratorio a la sala
-        ref: 'Sala',                    //Sala donde se dicta el laboratorio
+        ref: 'Laboratorios',                    //Sala donde se dicta el laboratorio
         require: true
     },
+
+    ref:{ 
+        type: String,
+        require:true
+    }
 });
 
-LaboratoriosSchema.methods.toJSON = function () {
+GuiaSchema.methods.toJSON = function () {
     const { __v, estado, ...data } = this.toObject();
     return data;
 }
 
-module.exports = model('Laboratorios',LaboratoriosSchema);
+module.exports = model('Guia',GuiaSchema);

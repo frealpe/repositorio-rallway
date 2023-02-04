@@ -1,4 +1,4 @@
-const {Salas, Laboratorios} = require('../models');
+const {Lider, Laboratorios} = require('../models');
 const Role = require('../models/role');
 const Usuario = require('../models/usuario');
 
@@ -10,7 +10,6 @@ const esRoleVaido = async (rol = '') => {
     }
 
 }
-
 /////////////////////////////////////////////////////////////////
 const emailExiste = async (correo = '') => {
     //Verifcar si existe el correo
@@ -21,7 +20,6 @@ const emailExiste = async (correo = '') => {
     }
 
 }
-
 /////////////////////////////////////////////////////////////////
 const existeUsuarioPorId = async (id) => {
     //Verifcar si existe el correo
@@ -32,17 +30,16 @@ const existeUsuarioPorId = async (id) => {
     }
 
 }
-
 ///////////////////////////////////////////////////////////////////
-const existeSalasPorId = async (id) => {
+const existeLiderPorId = async (id) => {
     //Verifcar si existe el correo
-    const existeSalas = await Salas.findById(id);
-    if (!existeSalas) {
-        throw new Error(`La sala ya existe: ${id}`);
+    const existeLider = await Lider.findById(id);
+    console.log("El lider existe"+ id);
+    if (!existeLider) {
+        throw new Error(`El Lider no existe: ${id}`);
     }
 
 }
-
 ///////////////////////////////////////////////////////////////////
 const existeLaboratoriosPorId = async (id) => {
     //Verifcar si existe el laboratorio
@@ -52,13 +49,11 @@ const existeLaboratoriosPorId = async (id) => {
     }
 
 }
-
 ///////////////////////////////////////////////////////////////////
 const valida = async (id='') => {
     //Verifcar si existe el correo
         console.log("Salida");
 }
-
 ///////////////////////////////////////////////////////////////////
 //Validar colecciones   
 const coleccionesPermitidas=(coleccion='',colecciones=[])=>{
@@ -68,13 +63,11 @@ const coleccionesPermitidas=(coleccion='',colecciones=[])=>{
         throw new Error(`La coleccion ${coleccion} no es permitida, ${colecciones}`);
     }
     return true;
-
 }
 ///////////////////////////////////////////////////////////////////
-
 module.exports = {
     esRoleVaido,
-    existeSalasPorId,
+    existeLiderPorId,
     existeLaboratoriosPorId,
     emailExiste,
     existeUsuarioPorId,

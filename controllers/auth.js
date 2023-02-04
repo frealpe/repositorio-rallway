@@ -8,8 +8,6 @@ const { json } = require('body-parser');
 const login = async (req = request, res = response) => {
 
     const { correo, password } = req.body;
-
-
     try {
 
         //Verificar el email existe
@@ -103,11 +101,24 @@ const googleSignIn = async (req, res = response) => {
         })
     }
 
+}
 
+const revalidarToken = async (req= request, res = response ) => {
+   
+    const {nombre,id,correo} = req.usuario;
 
+    const token = await generarJWT( uid=id, nombre );
+    res.json({
+        ok: true,
+        uid,
+        nombre,
+        correo,
+        token, 
+    })
 }
 
 module.exports = {
     login,
     googleSignIn,
+    revalidarToken
 }
