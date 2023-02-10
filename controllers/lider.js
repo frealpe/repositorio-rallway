@@ -5,7 +5,7 @@ const { Lider } = require('../models')
 const obtenerLider = async (req, res = response) => {
 
     //TODO recibir numeros no letras
-    const { limite = 50, desde = 0 } = req.query;
+    const { limite = 300, desde = 0 } = req.query;
     const query = { estado: true };
 
     const [totales, lider,descripcion] = await Promise.all([
@@ -67,6 +67,7 @@ const actualizarLider = async (req, res = response) => {
 
     console.log(data);
     if (data.nombre) {
+        data.codigo = data.codigo;
         data.nombre = data.nombre.toUpperCase();
         data.cedula = data.cedula;
         data.municipio = data.municipio.toUpperCase(); 

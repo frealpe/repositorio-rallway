@@ -2,6 +2,9 @@ const { Schema, model } = require('mongoose')
 
 const LiderSchema = Schema({
 
+    codigo:{
+        type:String,
+    },
     nombre: {
         type: String,
         require: [true, 'El nombre es obligatorio'],
